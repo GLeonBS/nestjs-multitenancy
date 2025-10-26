@@ -15,8 +15,8 @@ POST http://localhost:3000/partner/users
 Content-Type: application/json
 
 {
-  "name": "Leon Partner",
-  "email": "leonpartner@email.com",
+  "name": "Leon Partner2",
+  "email": "leonpartner2@email.com",
   "password": "123"
 }
 
@@ -25,19 +25,35 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "leonpartner@email.com",
+  "email": "leonpartner2@email.com",
   "password": "123"
 }
 
 ### Partner
 POST http://localhost:3000/partners
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Ikxlb24gUGFydG5lciIsImVtYWlsIjoibGVvbnBhcnRuZXJAZW1haWwuY29tIiwicm9sZXMiOlsiUEFSVE5FUiJdLCJjcmVhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJ1cGRhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJpYXQiOjE3NjE1MDYzMjksImV4cCI6MTc2MTU5MjcyOX0.QdEdlXxeGApYTl50bDlGvoLjOxgHwGRITZOjv_qUEdM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6Ikxlb24gUGFydG5lcjIiLCJlbWFpbCI6Imxlb25wYXJ0bmVyMkBlbWFpbC5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsInVwZGF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsImlhdCI6MTc2MTUxMTczOSwiZXhwIjoxNzYxNTk4MTM5fQ.CvvQEh61F2kSPP_qQ_ULhLLkcso6KL5p2ob_-bT-Vl8
 
 {
-  "name": "Best Partner"
+  "name": "Best Partner2"
 }
 
 ### All Partners
 GET http://localhost:3000/partners
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Ikxlb24gUGFydG5lciIsImVtYWlsIjoibGVvbnBhcnRuZXJAZW1haWwuY29tIiwicm9sZXMiOlsiUEFSVE5FUiJdLCJjcmVhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJ1cGRhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJpYXQiOjE3NjE1MDYzMjksImV4cCI6MTc2MTU5MjcyOX0.QdEdlXxeGApYTl50bDlGvoLjOxgHwGRITZOjv_qUEdM
+
+### Events
+POST http://localhost:3000/events
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6Ikxlb24gUGFydG5lcjIiLCJlbWFpbCI6Imxlb25wYXJ0bmVyMkBlbWFpbC5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsInVwZGF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsImlhdCI6MTc2MTUxMTczOSwiZXhwIjoxNzYxNTk4MTM5fQ.CvvQEh61F2kSPP_qQ_ULhLLkcso6KL5p2ob_-bT-Vl8
+
+{
+  "name": "Best Event2",
+  "description": "This is the best event ever2",
+  "date": "2025-12-31T23:59:59"
+}
+
+
+### All Events
+GET http://localhost:3000/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6Ikxlb24gUGFydG5lcjIiLCJlbWFpbCI6Imxlb25wYXJ0bmVyMkBlbWFpbC5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsInVwZGF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsImlhdCI6MTc2MTUxMTczOSwiZXhwIjoxNzYxNTk4MTM5fQ.CvvQEh61F2kSPP_qQ_ULhLLkcso6KL5p2ob_-bT-Vl8
