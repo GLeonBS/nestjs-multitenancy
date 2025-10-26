@@ -1,8 +1,19 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { TenantInterceptor } from 'src/tenant/tenant.interceptor';
 import { CreatePartnerDto } from './dto/create-partner.dto';
 import { PartnersService } from './partners.service';
 
+@UseInterceptors(TenantInterceptor)
 @UseGuards(AuthGuard)
 @Controller('partners')
 export class PartnersController {
@@ -20,6 +31,11 @@ export class PartnersController {
   @Get()
   findAll() {
     return this.partnersService.findAll();
+  }
+
+  @Post('relate/:id')
+  relate(@Param('id') id: string) {
+    return this.partnersService.relate(Number(id));
   }
 
   // @Get(':id')

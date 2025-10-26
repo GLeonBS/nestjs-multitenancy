@@ -25,7 +25,7 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "email": "leonpartner2@email.com",
+  "email": "leon@email.com",
   "password": "123"
 }
 
@@ -37,6 +37,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6I
 {
   "name": "Best Partner2"
 }
+
+### Partner User relate
+POST http://localhost:3000/partners/relate/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6Ikxlb24gUGFydG5lcjIiLCJlbWFpbCI6Imxlb25wYXJ0bmVyMkBlbWFpbC5jb20iLCJyb2xlcyI6WyJQQVJUTkVSIl0sImNyZWF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsInVwZGF0ZWRBdCI6IjIwMjUtMTAtMjZUMjA6NDg6NDYuMDY3WiIsImlhdCI6MTc2MTUxMTczOSwiZXhwIjoxNzYxNTk4MTM5fQ.CvvQEh61F2kSPP_qQ_ULhLLkcso6KL5p2ob_-bT-Vl8
 
 ### All Partners
 GET http://localhost:3000/partners
