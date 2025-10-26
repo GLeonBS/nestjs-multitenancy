@@ -28,3 +28,16 @@ Content-Type: application/json
   "email": "leonpartner@email.com",
   "password": "123"
 }
+
+### Partner
+POST http://localhost:3000/partners
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Ikxlb24gUGFydG5lciIsImVtYWlsIjoibGVvbnBhcnRuZXJAZW1haWwuY29tIiwicm9sZXMiOlsiUEFSVE5FUiJdLCJjcmVhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJ1cGRhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJpYXQiOjE3NjE1MDYzMjksImV4cCI6MTc2MTU5MjcyOX0.QdEdlXxeGApYTl50bDlGvoLjOxgHwGRITZOjv_qUEdM
+
+{
+  "name": "Best Partner"
+}
+
+### All Partners
+GET http://localhost:3000/partners
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwibmFtZSI6Ikxlb24gUGFydG5lciIsImVtYWlsIjoibGVvbnBhcnRuZXJAZW1haWwuY29tIiwicm9sZXMiOlsiUEFSVE5FUiJdLCJjcmVhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJ1cGRhdGVkQXQiOiIyMDI1LTEwLTI2VDE5OjAyOjUxLjU2MloiLCJpYXQiOjE3NjE1MDYzMjksImV4cCI6MTc2MTU5MjcyOX0.QdEdlXxeGApYTl50bDlGvoLjOxgHwGRITZOjv_qUEdM
