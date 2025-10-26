@@ -1,98 +1,176 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# NestJS Multi-Tenancy Event Management
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Sistema SaaS multi-tenant para gerenciamento de eventos construído com NestJS, demonstrando autenticação JWT, controle de acesso baseado em papéis e isolamento de dados entre parceiros.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Descrição
 
-## Description
+Este projeto implementa uma arquitetura multi-tenant onde diferentes parceiros (tenants) podem gerenciar seus próprios eventos e usuários de forma completamente isolada. O sistema utiliza isolamento a nível de linha (row-level) para garantir que cada parceiro acesse apenas seus próprios dados.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Funcionalidades
 
-## Project setup
+- **Multi-tenancy com isolamento de dados**: Cada parceiro opera em um ambiente isolado
+- **Autenticação JWT**: Sistema stateless e escalável de autenticação
+- **Controle de Acesso Baseado em Papéis (RBAC)**: Papéis de PARTNER e USER
+- **Gerenciamento de Eventos**: CRUDs para eventos associados a parceiros
+- **Criptografia de Senhas**: Utiliza bcrypt para segurança
+- **ORM Prisma**: Type-safe database client com MySQL
 
-```bash
-$ npm install
-```
+## Arquitetura
 
-## Compile and run the project
+### Módulos Principais
 
-```bash
-# development
-$ npm run start
+- **Auth**: Autenticação, login e gerenciamento de usuários
+- **Partners**: Gerenciamento de parceiros (tenants)
+- **Events**: CRUD de eventos com isolamento por tenant
+- **Tenant**: Serviço de resolução e isolamento de tenants por requisição
+- **Prisma**: Gerenciamento de conexão com banco de dados
 
-# watch mode
-$ npm run start:dev
+### Stack Tecnológica
 
-# production mode
-$ npm run start:prod
-```
+- NestJS 11.0.1
+- Prisma ORM 6.18.0
+- MySQL
+- JWT Authentication
+- bcrypt
+- TypeScript 5.7.3
 
-## Run tests
+## Instalação
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
+## Configuração do Banco de Dados
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+1. Configure sua conexão MySQL no arquivo `.env`:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+```env
+DATABASE_URL="mysql://user:password@localhost:3306/nestjs_multitenancy"
+```
+
+2. Execute as migrations do Prisma:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npx prisma migrate dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+3. (Opcional) Gere o Prisma Client:
 
-## Resources
+```bash
+npx prisma generate
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+## Executar a Aplicação
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+# desenvolvimento
+npm run start
 
-## Support
+# modo watch
+npm run start:dev
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# produção
+npm run start:prod
+```
 
-## Stay in touch
+## Testes
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+# testes unitários
+npm run test
+
+# testes e2e
+npm run test:e2e
+
+# cobertura de testes
+npm run test:cov
+```
+
+## API Endpoints
+
+### Autenticação
+
+- `POST /auth/login` - Login de usuário
+- `POST /users` - Registrar usuário comum
+- `POST /partner/users` - Registrar usuário parceiro
+
+### Parceiros
+
+- `POST /partners` - Criar parceiro (tenant)
+- `GET /partners` - Listar todos os parceiros
+- `POST /partners/relate/:id` - Associar usuário a um parceiro
+
+### Eventos
+
+- `POST /events` - Criar evento (requer papel PARTNER)
+- `GET /events` - Listar eventos do tenant
+- `GET /events/:id` - Obter detalhes do evento
+- `PATCH /events/:id` - Atualizar evento
+- `DELETE /events/:id` - Deletar evento
+
+## Como Funciona o Multi-Tenancy
+
+1. **Resolução de Tenant**: O `TenantInterceptor` intercepta cada requisição autenticada e resolve o parceiro associado ao usuário
+2. **Isolamento de Dados**: O `TenantService` (REQUEST-scoped) armazena o tenant atual durante o ciclo de vida da requisição
+3. **Filtragem Automática**: Todas as queries de eventos são automaticamente filtradas pelo `partnerId` do tenant atual
+4. **Segurança**: Usuários só podem acessar dados do seu próprio parceiro
+
+## Estrutura do Projeto
+
+```
+src/
+├── auth/           # Módulo de autenticação e autorização
+├── events/         # Módulo de gerenciamento de eventos
+├── partners/       # Módulo de gerenciamento de parceiros
+├── prisma/         # Configuração do Prisma
+├── tenant/         # Serviço de multi-tenancy
+└── main.ts         # Ponto de entrada da aplicação
+```
+
+## Modelo de Dados
+
+### Entidades Principais
+
+**User**: Representa os usuários do sistema
+- Armazena credenciais (email, senha hash)
+- Contém papéis em formato JSON (ex: ["PARTNER"] ou ["USER"])
+
+**Partner**: Representa um parceiro/tenant
+- Cada parceiro é um tenant isolado
+- Tem relacionamento com usuários e eventos
+
+**PartnerUser**: Tabela de junção
+- Associa usuários a parceiros
+- Um usuário pode pertencer a apenas um parceiro (constraint unique)
+
+**Event**: Representa eventos gerenciados por parceiros
+- Cada evento pertence a um parceiro específico
+- Isolamento automático via `partnerId`
+
+## Segurança
+
+- Senhas criptografadas com bcrypt
+- Tokens JWT com expiração de 1 dia
+- Guards para proteção de rotas
+- Controle de acesso baseado em papéis
+- Isolamento de dados a nível de tenant
+
+## Melhorias Futuras
+
+- [ ] Configuração via variáveis de ambiente
+- [ ] Validação de DTOs com class-validator
+- [ ] Documentação OpenAPI/Swagger
+- [ ] Suporte a múltiplos parceiros por usuário
+- [ ] Implementação completa de update/delete de eventos
+- [ ] Tratamento de erros aprimorado
+- [ ] Testes unitários e e2e
+
+## Recursos
+
+- [Documentação NestJS](https://docs.nestjs.com)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [JWT Authentication](https://docs.nestjs.com/security/authentication)
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+UNLICENSED
